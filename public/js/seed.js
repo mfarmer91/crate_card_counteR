@@ -7,7 +7,7 @@ window.Seed = (function () {
       cards: 7
     },
     {
-     id: 2,
+      id: 2,
       name: 'Monika',
       cards: 2
     },
