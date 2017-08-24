@@ -21,6 +21,21 @@ class EmployeeList extends React.Component {
       employees: nextEmployees,
     });
   }
+  
+   handleEmployeeDownVote = (employeeId) => {
+    const nextEmployees = this.state.employees.map((employee) => {
+      if (employee.id === employeeId) {
+        return Object.assign({}, employee, {
+          cards: employee.cards - 1,
+        });
+      } else {
+        return employee;
+      }
+    });
+    this.setState({
+      employees: nextEmployees,
+    });
+  }
 
   render() {
     const employees = this.state.employees.sort((a, b) => (
@@ -33,6 +48,7 @@ class EmployeeList extends React.Component {
         name={employee.name}
         cards={employee.cards}
         onVote={this.handleEmployeeUpVote}
+        onDownVote={this.handleEmployeeDownVote}
       />
     ));
     return (
@@ -48,6 +64,10 @@ class Employee extends React.Component {
     this.props.onVote(this.props.id)
   );
 
+ handleDownVote = () => (
+    this.props.onDownVote(this.props.id)
+  );
+
   render() {
     return (
       <div className='item'>
@@ -55,6 +75,9 @@ class Employee extends React.Component {
           <div className='header'>
             <a onClick={this.handleUpVote}>
               <i className='large caret up icon' />
+            </a>
+            <a onClick={this.handleDownVote}>
+              <i className='large caret down icon' />
             </a>
             {this.props.cards}
           </div>
