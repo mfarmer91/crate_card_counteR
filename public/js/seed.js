@@ -4,27 +4,27 @@ window.Seed = (function () {
     {
       id: 1,
       name: 'Rob',
-      cards: 7
+      cards: 0
     },
     {
       id: 2,
       name: 'Monika',
-      cards: 2
+      cards: 0
     },
     {
       id: 3,
       name: 'Marita',
-      cards: 1
+      cards: 0
     },
     {
       id: 4,
       name: 'Wendy',
-      cards: 3
+      cards: 0
     },
     {
       id: 5,
       name: 'Kate',
-      cards: 1
+      cards: 0
     },
   ];
 

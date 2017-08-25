@@ -1,6 +1,7 @@
 class EmployeeList extends React.Component {
   state = {
     employees: [],
+    total: 0,
   };
 
   componentDidMount() {
@@ -11,14 +12,17 @@ class EmployeeList extends React.Component {
     const nextEmployees = this.state.employees.map((employee) => {
       if (employee.id === employeeId) {
         return Object.assign({}, employee, {
-          cards: employee.cards + 1,
+          cards: employee.cards + 1,  
         });
+          
+          
       } else {
         return employee;
       }
     });
     this.setState({
       employees: nextEmployees,
+      total: this.state.total + 1,
     });
   }
   
@@ -26,7 +30,7 @@ class EmployeeList extends React.Component {
     const nextEmployees = this.state.employees.map((employee) => {
       if (employee.id === employeeId) {
         return Object.assign({}, employee, {
-          cards: employee.cards - 1,
+          cards: employee.cards - 1, 
         });
       } else {
         return employee;
@@ -34,8 +38,10 @@ class EmployeeList extends React.Component {
     });
     this.setState({
       employees: nextEmployees,
+      total: this.state.total - 1,
     });
   }
+   
 
   render() {
     const employees = this.state.employees.sort((a, b) => (
@@ -53,6 +59,10 @@ class EmployeeList extends React.Component {
     ));
     return (
       <div className='ui unstackable items'>
+        <div className='ui container'>
+                    <h2 className = 'ui tiny header'>Total Cards: {this.state.total}</h2>
+                    {this.props.cards}
+            </div>
         {employeeComponents}
       </div>
     );
@@ -91,6 +101,38 @@ class Employee extends React.Component {
     );
   }
 }
+
+//class Counter extends React.Component {
+//    state = {
+//        total: 0,
+//    };
+//
+//    totalCards = () => (
+//        this.state.total++
+//      );    
+//    
+//    render() {
+//        return (
+//            <div className='ui container'>
+//                    <h2 className = 'ui tiny header'>{this.state.total}</h2>
+//                    {this.props.cards}
+//            </div>
+//        );
+//    }
+//}
+
+//class Goal extends React.Component {
+//        render() {
+//        return (
+//            <div className='ui container'>
+//                <h1 id='weekly_goal' className='ui small header'>Goal For Week: 12</h1>
+//                    {this.props.total}
+//            </div>
+//        );
+//    }
+//}
+
+
 
 ReactDOM.render(
   <EmployeeList />,
